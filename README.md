@@ -71,26 +71,31 @@ jupyter notebook scraper.ipynb
 This code scrape job listings from Naukri.com. And output `data_scientist_jobs.csv` will be created with raw job listings.
 
 ### Step 3: Clean the Data
-Open and run the Job_market_analysis.ipynb notebook. This step involves:
+Open and run the analysis.ipynb notebook. This step involves:
 
   - Removing duplicates
 
   - Handling null values
 
-  - Formatting job roles and salary info
+  - Formatting job roles skills information. More specifically, we standardize columns containing textual data to uniformly store lower-case strings. We will also use regular expressions to conform variations in the way a specific skill may be listed, such as with abbreviations ('machine learning' &rarr; 'ml').
+
+  - Add new features: we will add a new feature that counts the total number of skills listed. We'll also add a new column that holds "Minimum Desired Experience" and "Maximum Desired Experience". These will give us some more numerical data to work with when performing exploratory data analysis (EDA). 
 
 ### Step 4: Perform EDA
 Continue in the same notebook to:
 
   - Visualize common job titles, skills, locations, and companies.
 
-  - Analyze salary trends and required experience levels.
-
   - Uses matplotlib for plotting insights.
+
+  Here are some sample figures that are produced.
+
+  ![Alt text](./assets/barplot_programming.png)
+  ![Alt text](./assets/barplot_visualization.png)
 
 
 ### Step 5: Cluster the locations of the jobs
-Continue in the same notebook to:
+We'll continue in the same notebook to:
 
   - clean job locations into neat strings
 
@@ -99,5 +104,17 @@ Continue in the same notebook to:
   - since numeric vectors are high dimensional, reduce their dimensions
 
   - plot the PCA and UMAP coordinates of the locations and see how they are grouped together
-    - each data point is a location. Grouped clusters are similar locations
+  - each data point is a location. Grouped clusters are similar locations
+
+### Step 6: Cluster based on Experience Levels and Skills
+
+We'll continue in the same notbook to:
+
+  - plot the PCA clusters when using various combinations from the three numerical columns: minimum experience, maximum experience, and total number of listed skills. 
+  - interpretations for each example are provided in the analysis notebook.
+
+  Below are some example figures that show the relationship between minimum and maximum expereince, and the results from PCA clustering when we reduce to 3 principal components from our three numerical columns. 
+
+  ![Alt text](./assets/scatter_minmax.png)
+  ![Alt text](./assets/pca.png)
 
